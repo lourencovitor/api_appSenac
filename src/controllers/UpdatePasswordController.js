@@ -36,8 +36,14 @@ module.exports = {
             const userConsultation = await UpdatePass.findOne({
                 where: {
                     user:emailConsultado.dataValues.email
-                }
+                },
+                order: [
+                    ['creationDate', 'DESC'],
+                ]
             })
+
+            // console.log(userConsultation.dataValues.key);
+            // return
             
             const transporter = nodemailer.createTransport({
                 host: "smtp.gmail.com ",

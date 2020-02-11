@@ -11,7 +11,7 @@ const sequelize = new Sequelize(database, user, password, {
     .then(() => {
         console.log("Conectado com sucesso! \n");
     })
-    .catch(() => {
+    .catch((error) => {
         console.log("Falha ao se conectar: " + error);
     });
 
