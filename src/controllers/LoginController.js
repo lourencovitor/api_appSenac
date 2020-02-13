@@ -16,7 +16,7 @@ module.exports = {
             })
 
             if(exibeRes === null){
-                res.status(400).json({message:'Usuario não encontrado'});
+                return res.status(400).json({message:'Usuario não encontrado'});
             }
             res.status(200).json(exibeRes);
         }

@@ -1,33 +1,28 @@
-const Area = require("../models/Area");
+const SubArea = require("../models/SubArea");
 
 module.exports = {
   async store(req, res) {
-    const { description, active } = req.body;
+    const { description, active, area} = req.body;
 
-    const consultDescription = await Area.findOne({
-      where: {
-        description
-      }
-    });
+    try{
+        const createSub = await SubArea.create({
+            description, 
+            active, 
+            area
+        })
 
-    if (consultDescription) {
-      return res.status(406).json({ message: "Area já existente" });
+        return res.status(200).json(createSub);
+    }
+    catch(error){
+        console.log(error);
+        return
     }
 
-    try {
-      const area = await Area.create({
-        description,
-        active
-      });
-
-      return res.status(200).json(area);
-    } catch (error) {
-      return res.status(500).json({ message: "Algo deu errado" });
-    }
+   
   },
   async index(req, res) {
     try {
-      const consult = await Area.findAll();
+      const consult = await SubArea.findAll();
       res.status(200).json(consult);
     } catch (error) {
       console.log(error);
@@ -38,14 +33,11 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const consult = await Area.findOne({
+      const consult = await SubArea.findOne({
         where: {
           id
         }
       });
-
-      console.log(typeof consult.dataValues.id)
-      return
 
       if (consult) {
         return res.status(200).json(consult);
@@ -62,7 +54,7 @@ module.exports = {
       const { id } = req.params;
       const dados = req.body;
 
-      const consult = await Area.update(dados, {
+      const consult = await SubArea.update(dados, {
         where: {
           id
         }
@@ -84,7 +76,7 @@ module.exports = {
     try {
       const { id } = req.params;
 
-      const consult = await Area.destroy({
+      const consult = await SubArea.destroy({
         where: {
           id
         }
