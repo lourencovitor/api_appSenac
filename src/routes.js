@@ -6,6 +6,7 @@ const updatePassword = require("./controllers/UpdatePasswordController");
 const UserCodeController = require("./controllers/UserCodeController");
 const AreaController = require("./controllers/AreaController");
 const SubAreaController = require("./controllers/SubAreaController");
+const CursoController = require("./controllers/CursoController");
 
 routes.get("/api", (req, res) => {
   res.json({
@@ -34,5 +35,11 @@ routes.get("/api/subArea", SubAreaController.index);
 routes.get("/api/subArea/:id", SubAreaController.show);
 routes.put("/api/subArea/:id", SubAreaController.update);
 routes.post("/api/subArea/:id", SubAreaController.delete);
+
+routes.post("/api/curso", CursoController.store);
+routes.get("/api/curso", CursoController.index);
+routes.get("/api/curso/:id", CursoController.show);
+routes.put("/api/curso/:id", CursoController.update);
+routes.delete("/api/curso/:id", CursoController.delete);
 
 module.exports = routes;
