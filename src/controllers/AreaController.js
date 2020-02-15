@@ -44,8 +44,8 @@ module.exports = {
         }
       });
 
-      console.log(typeof consult.dataValues.id)
-      return
+      // console.log(typeof consult.dataValues.id)
+      // return
 
       if (consult) {
         return res.status(200).json(consult);
@@ -68,7 +68,9 @@ module.exports = {
         }
       });
 
-      if (consult === 1) {
+      const consultJson = JSON.stringify(consult);
+
+      if (consultJson === "[1]") {
         return res
           .status(200)
           .json({ message: "Dados Atualizados com sucesso" });
